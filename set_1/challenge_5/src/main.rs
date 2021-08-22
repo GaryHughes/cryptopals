@@ -6,12 +6,5 @@ fn main() {
     let mut key = "ICE".as_bytes().iter().cycle();
     let actual_bytes: Vec<u8> = input.chars().map(|c| c as u8).map(|b| b ^ key.next().unwrap()).collect();
     let actual = hex::encode(actual_bytes);
-    if expected == actual {
-        println!("conversion succeeded! '{}' == '{}'", expected, actual);
-    }
-    else {
-        println!("conversion failed! '{}' != '{}'", expected, actual);
-    }
-
-
+    assert_eq!(expected, actual);
 }

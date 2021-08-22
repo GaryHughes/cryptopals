@@ -8,10 +8,5 @@ fn main() {
     let modifer = hex::decode(modifier).unwrap();
     let actual: Vec<u8> = decoded_bytes.iter().zip(modifer.iter()).map(|(a, b)| -> u8 { a ^ b } ).collect();    
     let actual = hex::encode(actual);
-    if expected == actual {
-        println!("conversion succeeded! {} == {}", expected, actual);
-    }
-    else {
-        println!("conversion failed! {} != {}", expected, actual);
-    }
+    assert_eq!(expected, actual);
 }
