@@ -9,13 +9,14 @@ fn main() {
 
     let a = "this is a test".as_bytes();
     let b = "wokka wokka!!!".as_bytes();
-    assert_eq!(hamming_distance(&a, &b), 37);  
+    assert_eq!(hamming_distance(&a, &b), 37);
     
     let data = read_file("6.txt");
     let key_size = get_key_size(&data);
     println!("keysize = {}", key_size);
     let key = get_key(&data, key_size);
     println!("{}", key);
+    assert_eq!(key, "Terminator X: Bring the noise");
 
 
     // let file = File::open("6.txt").unwrap();
