@@ -18,17 +18,16 @@ fn main() {
     println!("{}", key);
     assert_eq!(key, "Terminator X: Bring the noise");
 
-
-    // let file = File::open("6.txt").unwrap();
-    // let reader = BufReader::new(file);
-    // // TODO - change this to just keep the best candidate
-    // for line in reader.lines() {
-    //     let line = line.unwrap();
-    //     let mut key = key.as_bytes().iter().cycle();
-    //     let decoded_bytes: Vec<u8> = line.chars().map(|c| c as u8).map(|b| b ^ key.next().unwrap()).collect();
-    //     let decoded = str::from_utf8(&decoded_bytes).unwrap();
-    //     println!("{}", decoded);
-    // }
+    let file = File::open("6.txt").unwrap();
+    let reader = BufReader::new(file);
+    let mut key = key.as_bytes().iter().cycle();
+    for line in reader.lines() {
+        let line = line.unwrap();
+        let line = base64::decode(line).unwrap();
+        let decoded_bytes: Vec<u8> = line.iter().map(|b| b ^ key.next().unwrap()).collect();
+        let decoded = str::from_utf8(&decoded_bytes).unwrap();
+        print!("{}", decoded);
+    }
 }
 
 
