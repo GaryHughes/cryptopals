@@ -3,7 +3,7 @@ use std::str;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use strided::Stride;
-use cryptopals::score_english_text;
+use cryptopals::{score_english_text, hamming_distance};
 
 fn main() {
 
@@ -100,9 +100,3 @@ fn read_file(filename: &str) -> Vec<u8> {
     buffer
 }
 
-fn hamming_distance(s1: &[u8], s2: &[u8]) -> u32 {
-    s1.iter().zip(s2)
-        .map(|(c1, c2)| c1 ^ c2)
-        .map(|c| c.count_ones())
-        .fold(0, |acc, x| acc + x)
-}

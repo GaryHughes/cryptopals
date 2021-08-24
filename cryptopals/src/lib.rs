@@ -45,3 +45,10 @@ pub fn score_english_text(input: &Vec<u8>) -> f64 {
         })
         .sum()
 }
+
+pub fn hamming_distance(s1: &[u8], s2: &[u8]) -> u32 {
+    s1.iter().zip(s2)
+        .map(|(c1, c2)| c1 ^ c2)
+        .map(|c| c.count_ones())
+        .fold(0, |acc, x| acc + x)
+}
